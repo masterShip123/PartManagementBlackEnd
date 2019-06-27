@@ -45,13 +45,18 @@ async function sendMail(user, callback) {
 var i;
 console.log("user.lengthEmail : "+user.lengthEmail);
 for(i=0 ; i<user.lengthEmail; i++){
+ 
   var pop = user.sendToemail.pop();
   let mailOptions = {
-    from: '"Fun Of Heuristic"', // sender address
+    
+    from: user.formEmail, // sender address
     to: pop, // list of receivers
-    subject: "Wellcome to Fun Of Heuristic 👻", // Subject line
-    html: `<h1>Hi ${user.name}</h1><br>
-    <h4>Thanks for joining us</h4>`
+    subject: "["+user.approveOrCancel+"]Request Number: "+user.requestno, // Subject line
+    //ข้อความที่จะใส่ข้างใน
+    html: `<h3>Request Number: ${user.requestno}</h3>
+    <h3>Request Type: ${user.requestyp}</h3>
+    <h3>Link: ${user.link}</h3><br><br>
+    <B>*** This email send automatic from system. Do not reply this email</B>`
   };
   console.log("Check POP : "+pop);
   // send mail with defined transport object
